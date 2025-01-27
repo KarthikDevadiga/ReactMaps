@@ -13,10 +13,19 @@ function App() {
       <BrowserRouter future={{ v7_relativeSplatPath: true }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="app" element={<AppLayout />} />
+          <Route path="app" element={<AppLayout />}>
+            <Route index element={<p>cites</p>} />
+            <Route path="cities" element={<p>Cities</p>} />
+            <Route path="countries" element={<p>Countries</p>} />
+            <Route path="Form" element={<p>Form</p>} />
+          </Route>
           <Route path="pricing" element={<Pricing />} />
           <Route path="product" element={<Product />} />
           <Route path="login" element={<Login />} />
+          <Route
+            path="*"
+            element={<p style={{ color: "black" }}>404 not found :</p>}
+          />
         </Routes>
       </BrowserRouter>
     </>
