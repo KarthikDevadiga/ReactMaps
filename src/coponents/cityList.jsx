@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 
 import CityItem from "./CityItem";
-export default function CityList({ cities }) {
+import { useCities } from "../contexts/CityContex";
+export default function CityList() {
+  const { cities } = useCities();
   return (
     <ul>
       {cities.map((ele) => (
@@ -10,7 +12,3 @@ export default function CityList({ cities }) {
     </ul>
   );
 }
-
-CityList.propTypes = {
-  cities: PropTypes.array.isRequired,
-};

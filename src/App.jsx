@@ -10,40 +10,32 @@ import { useEffect, useState } from "react";
 import CityList from "./coponents/cityList";
 import CountryList from "./coponents/CountryList";
 import City from "./coponents/City";
+import { CityContext } from "./contexts/CityContex";
 
 function App() {
-  const [cities, setCities] = useState([]);
-
-  useEffect(function () {
-    async function fetchCities() {
-      const res = await fetch("http://localhost:8000/cities");
-      const data = await res.json();
-      setCities(data);
-    }
-    fetchCities();
-  }, []);
-
   return (
     <>
-      <BrowserRouter future={{ v7_relativeSplatPath: true }}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="app" element={<AppLayout cities={cities} />}>
-            <Route index element={<Navigate replace to={"cities"} />} />
-            <Route path="cities" element={<CityList cities={cities} />} />
-            <Route path="cities/:id" element={<City />} />
-            <Route path="countries" element={<CountryList cities={cities} />} />
-            <Route path="form" element={<Form />} />
-          </Route>
-          <Route path="pricing" element={<Pricing />} />
-          <Route path="product" element={<Product />} />
-          <Route path="login" element={<Login />} />
-          <Route
-            path="*"
-            element={<p style={{ color: "black" }}>404 not found :</p>}
-          />
-        </Routes>
-      </BrowserRouter>
+      <CityContext>
+        <BrowserRouter future={{ v7_relativeSplatPath: true }}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="app" element={<AppLayout />}>
+              <Route index element={<Navigate replace to={"cities"} />} />
+              <Route path="cities" element={<CityList c />} />
+              <Route path="cities/:id" element={<City />} />
+              <Route path="countries" element={<CountryList />} />
+              <Route path="form" element={<Form />} />
+            </Route>
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="product" element={<Product />} />
+            <Route path="login" element={<Login />} />
+            <Route
+              path="*"
+              element={<p style={{ color: "black" }}>404 not found :</p>}
+            />
+          </Routes>
+        </BrowserRouter>
+      </CityContext>
     </>
   );
 }

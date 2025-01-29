@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import styles from "./CountryList.module.css";
 
 import CountryItem from "./CountryItem";
-export default function CountryList({ cities }) {
+import { useCities } from "../contexts/CityContex";
+export default function CountryList() {
+  const { cities } = useCities();
   const countries = cities.reduce((arr, city) => {
     if (!arr.map((ele) => ele.country).includes(city.country)) {
       return [...arr, { country: city.country, emoji: city.emoji }];
@@ -18,7 +20,3 @@ export default function CountryList({ cities }) {
     </ul>
   );
 }
-
-CountryList.propTypes = {
-  cities: PropTypes.array.isRequired,
-};
