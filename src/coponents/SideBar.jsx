@@ -1,9 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Logo from "./Logo";
 import styles from "./Sidebar.module.css";
 import AppNav from "./AppNav";
-export default function SideBar() {
+import PropTypes from "prop-types";
+
+export default function SideBar({ cities }) {
   return (
     <div className={styles.sidebar}>
       <Logo />
@@ -13,3 +15,7 @@ export default function SideBar() {
     </div>
   );
 }
+
+SideBar.propTypes = {
+  cities: PropTypes.array.isRequired,
+};
