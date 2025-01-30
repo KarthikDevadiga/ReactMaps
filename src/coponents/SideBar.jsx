@@ -5,7 +5,7 @@ import styles from "./Sidebar.module.css";
 import AppNav from "./AppNav";
 import PropTypes from "prop-types";
 
-export default function SideBar({ cities }) {
+export default function SideBar() {
   return (
     <div className={styles.sidebar}>
       <Logo />
@@ -15,7 +15,3 @@ export default function SideBar({ cities }) {
     </div>
   );
 }
-
-SideBar.propTypes = {
-  cities: PropTypes.array.isRequired,
-};

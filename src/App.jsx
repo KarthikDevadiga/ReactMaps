@@ -7,6 +7,8 @@ import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
 import Login from "./pages/Login";
 
+import ProtectedRoute from "./coponents/ProtectedRoute";
+
 import CityList from "./coponents/cityList";
 import CountryList from "./coponents/CountryList";
 import City from "./coponents/City";
@@ -22,7 +24,14 @@ function App() {
           <BrowserRouter future={{ v7_relativeSplatPath: true }}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="app" element={<AppLayout />}>
+              <Route
+                path="app"
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route index element={<Navigate replace to={"cities"} />} />
                 <Route path="cities" element={<CityList c />} />
                 <Route path="cities/:id" element={<City />} />

@@ -70,7 +70,7 @@ function CityContext({ children }) {
       method: "POST",
       body: JSON.stringify(newCity),
       headers: {
-        "Content-Type": "aplication/json",
+        "Content-Type": "application/json",
       },
     });
     dispatch({ type: "city/create", payload: newCity });
@@ -94,6 +94,9 @@ function CityContext({ children }) {
 
 function useCities() {
   const citiesValue = useContext(CitiesProvider);
+  if (!citiesValue) {
+    throw new Error("useCities must be used within a CityContext.Provider");
+  }
   return citiesValue;
 }
 

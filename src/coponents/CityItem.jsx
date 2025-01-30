@@ -14,7 +14,10 @@ const formatDate = (date) =>
 export default function CityItem({ city }) {
   const { postCity, deleteCity } = useCities();
   const { currentCity } = useCities();
+  // const { lat, lng } = { lat: "52.53586782505711", lng: "13.376933665713324" };
   const { lat, lng } = city.position;
+
+  console.log(`city : ${city}`);
 
   function updateCity(e) {
     e.preventDefault();
