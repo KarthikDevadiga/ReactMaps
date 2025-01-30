@@ -1,7 +1,7 @@
 import styles from "./CityItem.module.css";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
 import { useCities } from "../contexts/CityContex";
+import { Link, useParams } from "react-router-dom";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -12,8 +12,15 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 export default function CityItem({ city }) {
+  const { postCity, deleteCity } = useCities();
   const { currentCity } = useCities();
   const { lat, lng } = city.position;
+
+  function updateCity(e) {
+    e.preventDefault();
+    deleteCity(city.id);
+  }
+
   return (
     <li>
       <Link
@@ -27,7 +34,9 @@ export default function CityItem({ city }) {
           <span className={styles.name}>{city.cityName}</span>
         </div>
         <time className={styles.date}>{formatDate(city.date)}</time>
-        <button className={styles.deleteBtn}>x</button>
+        <button className={styles.deleteBtn} onClick={updateCity}>
+          x
+        </button>
       </Link>
     </li>
   );
